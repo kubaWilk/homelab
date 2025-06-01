@@ -1,0 +1,58 @@
+---
+- name: samba server configure
+  hosts: servers
+  tasks:
+    - name: Install samba server
+      apt:
+        name: samba
+        state: latest
+    
+    - name: create samba group
+      group:
+        name: "smbusers"
+        state: present
+
+    - name: create samba share user
+      user:
+        name: "smbuser"
+        shell: "/sbin/nologin"
+        append: yes
+        group: "smbusers"
+        create_home: no
+    
+    - name: create a smbshare
+      file: 
+        path: /storage
+        state: directory
+        owner: root
+        group: smbusers
+        mode: "2775"
+      
+    - name: configure the samba share
+      blockinfile:
+        path: /etc/samba/smb.configure
+        block: |
+          [storage]
+              path = /storage
+              guest ok = no
+              writable = yes
+              browsable = yes
+              valid users = smbuser @smbusers
+              write list = @smbusers
+        notify:
+          - start_samba
+          - open_port
+  
+  handlers:
+    - name: start_samba
+      service:
+        name: smb
+        state: started
+    
+    - name: open_port
+      firewalld:
+        service: samba
+        state: enabled
+        immediate: yes
+        permanent: yes
+          

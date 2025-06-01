@@ -1,0 +1,29 @@
+---
+- hosts: servers
+  vars:
+    names:
+      user: qbtuser
+      group: qbtuser
+
+  tasks:
+    - name: Create a group
+      ansible.builtin.group: 
+        name: '{{names.group}}'
+        state: present
+    
+    - name: Create a user
+      ansible.builtin.user:
+        name: '{{names.user}}'
+        groups: '{{names.group}}'
+        comment: '{{names.user}} service account'
+        shell: /usr/sbin/nologin
+        home: /nonexistent
+        system: yes
+        create_home: no
+        state: present
+    
+    - name: Return user and group id via ansible
+      command: id {{names.user}}
+      register: out
+
+    - debug: var=out.stdout_lines
