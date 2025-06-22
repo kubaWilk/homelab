@@ -1,0 +1,33 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: pl
+  ssh:
+    install-server: true
+    allow-pw: false
+    disable_root: true
+    ssh_quiet_keygen: true
+    allow_public_ssh_keys: true
+    authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDVoAuAZdF+8Zpd+/xSsjW30zymMI/1O0mfcglqDgJMBpuvikuMMapAdkSQH1ZONUwcSGtv2IMSBmvjm45VtHHPfAteta2yaz3O9eJrScHbe1UrsGl+CEClo24B6CWdeHvRz/wdWDvrcvkcu3Yeliq9qvcI580ANOKke/kxfz8mINGeEqz3CGu9oMZgxDPei4nW0wcRzmZZIWcakPwRSZpqLedPHKr3gsjvZGX8e+uWc8x/5pKTzs5PvFsMG7v/Hr0hh1djZCcR8GLmHUqK4gjel4uRzJjqoDnbvc/StclcZN0QZxWJRIXJuA4nLnxYk26B0rpvNGmN/k3sw6IKcNzbxy/FJiYoyahRQf2XjtS1BszcMOyGKWwi+yu5c7JLKvBzolUkq0DPKU2ZUI/6DbTrGQkz7v7zDC/GFzA4R4GpIBVkWm53bSt96HuvlU84sBFVKMXujgzjEzvqzJc+7F4VyjnirqHIglk7axH269Nb/aH/xiYUubdR5SXWkEKNl1c= kuba@archie-sus
+  packages:
+    - qemu-guest-agent
+    - sudo
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  user-data:
+    package_upgrade: false
+    timezone: Europe/Warsaw
+    users:
+      - name: ramiradmin  
+        groups: [adm, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        ssh_authorized_keys:
+          - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDVoAuAZdF+8Zpd+/xSsjW30zymMI/1O0mfcglqDgJMBpuvikuMMapAdkSQH1ZONUwcSGtv2IMSBmvjm45VtHHPfAteta2yaz3O9eJrScHbe1UrsGl+CEClo24B6CWdeHvRz/wdWDvrcvkcu3Yeliq9qvcI580ANOKke/kxfz8mINGeEqz3CGu9oMZgxDPei4nW0wcRzmZZIWcakPwRSZpqLedPHKr3gsjvZGX8e+uWc8x/5pKTzs5PvFsMG7v/Hr0hh1djZCcR8GLmHUqK4gjel4uRzJjqoDnbvc/StclcZN0QZxWJRIXJuA4nLnxYk26B0rpvNGmN/k3sw6IKcNzbxy/FJiYoyahRQf2XjtS1BszcMOyGKWwi+yu5c7JLKvBzolUkq0DPKU2ZUI/6DbTrGQkz7v7zDC/GFzA4R4GpIBVkWm53bSt96HuvlU84sBFVKMXujgzjEzvqzJc+7F4VyjnirqHIglk7axH269Nb/aH/xiYUubdR5SXWkEKNl1c="
