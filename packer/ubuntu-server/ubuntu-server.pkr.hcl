@@ -26,7 +26,7 @@ variable "proxmox_api_token_secret" {
 
 source "proxmox-iso" "ubuntu-server" {
 
-  # Proxmox Connection Settings
+  # Proxmox Connection Settingsp
   proxmox_url              = "${var.proxmox_api_url}"
   username                 = "${var.proxmox_api_token_id}"
   token                    = "${var.proxmox_api_token_secret}"
@@ -46,7 +46,7 @@ source "proxmox-iso" "ubuntu-server" {
   qemu_agent      = true
   scsi_controller = "virtio-scsi-pci"
   disks {
-    disk_size         = "50G"
+    disk_size         = "30G"
     format            = "raw"
     storage_pool      = "local-lvm"
     storage_pool_type = "lvm"
@@ -54,8 +54,8 @@ source "proxmox-iso" "ubuntu-server" {
   }
   os = "l26"
   machine="q35"
-  cores  = "4"
-  memory = "8128"
+  cores  = "2"
+  memory = "2048"
   network_adapters {
     model    = "virtio"
     bridge   = "vmbr0"
@@ -68,7 +68,6 @@ source "proxmox-iso" "ubuntu-server" {
 
   # PACKER Boot Commands
   boot_command = [
-    #"c<wait>linux /casper/vmlinuz --- autoinstall 'ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/22.04/'<enter><wait5s>initrd /casper/initrd <enter><wait5s>boot <enter><wait5s>"
     "e<wait><down><down><down><end> autoinstall 'ds=nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/'<F10>"
   ]
   boot_wait = "10s"

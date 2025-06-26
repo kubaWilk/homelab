@@ -29,5 +29,6 @@ autoinstall:
         lock-passwd: false
         sudo: ALL=(ALL) NOPASSWD:ALL
         shell: /bin/bash
+        passwd: "$y$j9T$6NCJTVmdnXB.VPFZN4.Hs1$QU/jLrUzpX/.sRw6TV.xx9wEoPxCMI8/.Dlu7TpTpA2"
         ssh_authorized_keys:
           - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDVoAuAZdF+8Zpd+/xSsjW30zymMI/1O0mfcglqDgJMBpuvikuMMapAdkSQH1ZONUwcSGtv2IMSBmvjm45VtHHPfAteta2yaz3O9eJrScHbe1UrsGl+CEClo24B6CWdeHvRz/wdWDvrcvkcu3Yeliq9qvcI580ANOKke/kxfz8mINGeEqz3CGu9oMZgxDPei4nW0wcRzmZZIWcakPwRSZpqLedPHKr3gsjvZGX8e+uWc8x/5pKTzs5PvFsMG7v/Hr0hh1djZCcR8GLmHUqK4gjel4uRzJjqoDnbvc/StclcZN0QZxWJRIXJuA4nLnxYk26B0rpvNGmN/k3sw6IKcNzbxy/FJiYoyahRQf2XjtS1BszcMOyGKWwi+yu5c7JLKvBzolUkq0DPKU2ZUI/6DbTrGQkz7v7zDC/GFzA4R4GpIBVkWm53bSt96HuvlU84sBFVKMXujgzjEzvqzJc+7F4VyjnirqHIglk7axH269Nb/aH/xiYUubdR5SXWkEKNl1c="

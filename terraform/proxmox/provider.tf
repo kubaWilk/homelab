@@ -24,6 +24,11 @@ variable "PROXMOX_TOKEN" {
   sensitive = true
 }
 
+variable "CONTAINER_PASSWORD" {
+  type      = string
+  sensitive = true
+}
+
 variable "PUBLIC_SSH_KEY" {
   # NOTE This is the publich SSH key, you want to upload to VMs and LXC containers.
   type      = string
@@ -36,5 +41,5 @@ provider "proxmox" {
   pm_api_token_secret = var.PROXMOX_TOKEN
   
   # NOTE Optional, but recommended to set to true if you are using self-signed certificates.
-  pm_tls_insecure = false
+  pm_tls_insecure = true
 }
